@@ -20,7 +20,7 @@ after_script:   # 最后执行的命令  
   - git config user.email "tbaglee7@gmail.com"  
   - git add .    
   - git commit -m "代码是自动部署的哈"   
-  - git push --force --quiet "https://${myBlog}@${GH_REF}" main:gh-pages 
+  - git push --force --quiet "https://${myBlog}@${GH_REF}" master:gh-pages 
   
 branches:   
   only:    
