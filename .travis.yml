@@ -1,0 +1,31 @@
+language: node_js
+ 
+node_js: stable 
+
+cache:   
+  directories:   
+  - node_modules # 要缓存的文件夹
+
+install:  
+ - npm install # 
+
+script:   
+ - hexo clean   
+ - hexo g 
+ 
+after_script:   # 最后执行的命令   
+  - cd ./public   
+  - git init   
+  - git config user.name "tbagslee"   
+  - git config user.email "tbaglee7@gmail.com"  
+  - git add .    
+  - git commit -m "代码是自动部署的哈"   
+  - git push --force --quiet "https://${myBlog}@${GH_REF}" main:gh-pages 
+  
+branches:   
+  only:    
+   - main # 触发持续集成的分支
+   
+env:  
+  global:    
+   - GH_REF: github.com/tbagslee/myBlog.git # 就是你github上存放静态博客最终文件的仓库地址末尾加上.git
